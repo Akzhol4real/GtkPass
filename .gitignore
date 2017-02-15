@@ -27,3 +27,17 @@
 *.exe
 *.out
 *.app
+
+# autotools stuff
+aux_build/
+autom4te.cache/
+config.h.in
+Makefile
+Makefile.in
+stamp-h1
+config.log
+config.status
+aclocal.m4
+
+# autosave files
+*~
