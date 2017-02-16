@@ -15,7 +15,7 @@
  */
 
 /**
- * \file    mainTest.cpp
+ * \file    testMain.cpp
  * \brief   Main file of GtkPass' unit tests.
  * \author  Kevin Kirchner
  * \date    2017

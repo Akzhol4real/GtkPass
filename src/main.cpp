@@ -25,8 +25,12 @@
  * \p main.
  */
 
+#include "RandomGenerator.h"
 #include <iostream>
 
 int main() {
-    std::cout << "Hello World" << std::endl;
+    if (sodium_init() == 1) {
+        std::cerr << "ERROR: Failed to initialize libsodium!" << std::endl;
+        return 1;
+    }
 }

@@ -34,6 +34,5 @@ AC_CONFIG_FILES([
   Makefile
   src/Makefile
   data/Makefile
-  test/Makefile
 ])
 AC_OUTPUT
