@@ -25,12 +25,27 @@
  * \p main.
  */
 
+// check for autotools config.h
+#ifdef HAVE_CONFIG_H
+#   include <config.h>
+#else
+#   error "Do no compile without Autotools!"
+#endif
+
 #include "RandomGenerator.h"
+#include "Application.h"
 #include <iostream>
 
-int main() {
+/// Main function executed at application start.
+///
+/// \param argc Number of command line arguments
+/// \param argv Array of strings containing the command line arguments
+/// \return Integer value indicating success
+int main(int argc, char* argv[]) {
     if (sodium_init() == 1) {
         std::cerr << "ERROR: Failed to initialize libsodium!" << std::endl;
         return 1;
     }
+    auto application = GtkPassApplication::create();
+    return application->run(argc, argv);
 }

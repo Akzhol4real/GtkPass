@@ -14,7 +14,11 @@ GtkPass_SOURCES = \
   $(BUILT_SOURCES) \
   main.cpp \
   RandomGenerator.h \
-  RandomGenerator.cpp
+  RandomGenerator.cpp \
+  Application.h \
+  Application.cpp \
+  MainWindow.h \
+  MainWindow.cpp
 
 GtkPass_CPPFLAGS = \
   $(GTKMM_CFLAGS)
