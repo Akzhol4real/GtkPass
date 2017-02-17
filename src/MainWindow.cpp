@@ -28,12 +28,14 @@
 #include <stdexcept>
 #include <iostream>
 
-/// Constructor of \p GtkPassWindow. Initializes member variables and loads
-/// the GUI description from their XML-files.
-/// \b Note: Do not use directly. Use \p create() instead!
-///
-/// \param cobject The window's base object
-/// \param builder Constant reference to a \p Gtk::Builder
+/**
+ * Constructor of \p GtkPassWindow. Initializes member variables and loads
+ * the GUI description from their XML-files.
+ * \b Note: Do not use directly. Use \p create() instead!
+ *
+ * \param cobject The window's base object
+ * \param builder Constant reference to a \p Gtk::Builder
+ */
 GtkPassWindow::GtkPassWindow(
     BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder) :
     Gtk::ApplicationWindow(cobject), m_refBuilder(builder), m_options(),
@@ -151,14 +153,16 @@ GtkPassWindow::GtkPassWindow(
     );
 }
 
-/// Creates a new instance of \p GtkPassWindow and returns a pointer to it.
-/// Use this method instead of the constructore directly.
-/// This function gets a compiled resource from the file \p resources.c in
-/// order to build the window. If the resource could not be loaded, an exception
-/// of type \p std::runtime_error will be thrown.
-///
-/// \throws std::runtime_error if compiled resource could not be loaded.
-/// \return Pointer to the new instance of \p GtkPassWindow
+/**
+ * Creates a new instance of \p GtkPassWindow and returns a pointer to it.
+ * Use this method instead of the constructore directly.
+ * This function gets a compiled resource from the file \p resources.c in
+ * order to build the window. If the resource could not be loaded, an exception
+ * of type \p std::runtime_error will be thrown.
+ *
+ * \throws std::runtime_error if compiled resource could not be loaded.
+ * \return Pointer to the new instance of \p GtkPassWindow
+ */
 GtkPassWindow* GtkPassWindow::create() {
     auto refBuilder = Gtk::Builder::create_from_resource("/org/darth-revan/gtkpass/window.ui");
     GtkPassWindow* window = nullptr;
@@ -169,8 +173,10 @@ GtkPassWindow* GtkPassWindow::create() {
     return window;
 }
 
-/// Signal handler for changing the state of one of the checkboxes. Updates the
-/// state of the member variable \p m_options.
+/**
+ * Signal handler for changing the state of one of the checkboxes. Updates the
+ * state of the member variable \p m_options.
+ */
 void GtkPassWindow::on_check() {
     m_options.bIncludeLettersLower = m_optionIncludeLowerCase->get_active();
     m_options.bIncludeLettersUpper = m_optionIncludeUpperCase->get_active();
@@ -180,8 +186,10 @@ void GtkPassWindow::on_check() {
     m_options.bIncludeSpecial = m_optionIncludeSpecial->get_active();
 }
 
-/// Signal handler for clicking the generate button. Generates a password
-/// with the user's options and writes it into the password text field.
+/**
+ * Signal handler for clicking the generate button. Generates a password
+ * with the user's options and writes it into the password text field.
+ */
 void GtkPassWindow::generatePassword() {
     m_passwordEntry->set_text(
         getRandomString(static_cast<uint32_t>(m_passwordLength->get_value()), m_options)

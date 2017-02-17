@@ -36,11 +36,13 @@
 #include "Application.h"
 #include <iostream>
 
-/// Main function executed at application start.
-///
-/// \param argc Number of command line arguments
-/// \param argv Array of strings containing the command line arguments
-/// \return Integer value indicating success
+/**
+ *  Main function executed at application start.
+ *
+ * \param argc Number of command line arguments
+ * \param argv Array of strings containing the command line arguments
+ * \return Integer value indicating success
+ */
 int main(int argc, char* argv[]) {
     if (sodium_init() == 1) {
         std::cerr << "ERROR: Failed to initialize libsodium!" << std::endl;
