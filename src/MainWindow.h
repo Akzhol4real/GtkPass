@@ -76,6 +76,8 @@ private:
 
     /// Signal handler for checking the check boxes
     void on_check();
+    /// Signal handler for clicking the generate button
+    void generatePassword();
 
 }; // End of class GtkPassWindow
 

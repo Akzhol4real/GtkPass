@@ -140,6 +140,11 @@ GtkPassWindow::GtkPassWindow(
     );
     m_passwordLength->set_adjustment(m_passwordLengthAdjustment);
     m_passwordLength->set_wrap(false);
+
+    // add signal handler for clicking the generate button
+    m_btnGeneratePassword->signal_clicked().connect(
+        sigc::mem_fun(*this, &GtkPassWindow::generatePassword)
+    );
 }
 
 /// Creates a new instance of \p GtkPassWindow and returns a pointer to it.
@@ -169,4 +174,12 @@ void GtkPassWindow::on_check() {
     m_options.bIncludeSpace = m_optionIncludeSpace->get_active();
     m_options.bIncludeDash = m_optionIncludeDash->get_active();
     m_options.bIncludeSpecial = m_optionIncludeSpecial->get_active();
+}
+
+/// Signal handler for clicking the generate button. Generates a password
+/// with the user's options and writes it into the password text field.
+void GtkPassWindow::generatePassword() {
+    m_passwordEntry->set_text(
+        getRandomString(static_cast<uint32_t>(m_passwordLength->get_value()), m_options)
+    );
 }
