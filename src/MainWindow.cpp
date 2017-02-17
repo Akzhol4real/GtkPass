@@ -41,8 +41,8 @@ GtkPassWindow::GtkPassWindow(
     m_optionIncludeNumeric(nullptr), m_optionIncludeSpecial(nullptr),
     m_optionIncludeDash(nullptr), m_optionIncludeSpace(nullptr),
     m_passwordLength(nullptr), m_passwordEntropy(nullptr),
-    m_passwordEntry(nullptr), m_btnShowPassword(nullptr),
-    m_btnGeneratePassword(nullptr) {
+    m_entropyLevel(nullptr), m_passwordEntry(nullptr),
+    m_btnShowPassword(nullptr), m_btnGeneratePassword(nullptr) {
 
     m_refBuilder->get_widget("optionIncludeUpperCase", m_optionIncludeUpperCase);
     if (!m_optionIncludeUpperCase) {
@@ -79,9 +79,14 @@ GtkPassWindow::GtkPassWindow(
         throw std::runtime_error("No \"passwordLength\" object in ui file!");
     }
 
-    m_refBuilder->get_widget("passwordEntropy", m_passwordEntropy);
+    m_refBuilder->get_widget("entropyValue", m_passwordEntropy);
     if (!m_passwordEntropy) {
-        throw std::runtime_error("No \"passwordEntropy\" object in ui file!");
+        throw std::runtime_error("No \"entropyValue\" object in ui file!");
+    }
+
+    m_refBuilder->get_widget("entropyLevelBar", m_entropyLevel);
+    if (!m_entropyLevel) {
+        throw std::runtime_error("No \"entropyLevelBar\" object in ui file!");
     }
 
     m_refBuilder->get_widget("entryPassword", m_passwordEntry);

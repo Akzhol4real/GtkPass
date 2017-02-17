@@ -61,8 +61,11 @@ private:
     /// \p Glib::RefPtr to the \p Gtk::Adjustment of the password length spin
     /// button
     Glib::RefPtr<Gtk::Adjustment> m_passwordLengthAdjustment;
-    /// Pointer to the spin button displaying the password's entropy
-    Gtk::SpinButton* m_passwordEntropy;
+
+    /// Pointer to the label displaying the password's entropy
+    Gtk::Label* m_passwordEntropy;
+    /// Pointer to the entropy level bar
+    Gtk::LevelBar* m_entropyLevel;
 
     /// Pointer to the entry field holding the password
     Gtk::Entry* m_passwordEntry;
