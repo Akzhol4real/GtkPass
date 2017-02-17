@@ -26,6 +26,8 @@
 
 #include "MainWindow.h"
 #include <stdexcept>
+#include <cstring>
+#include <cmath>
 #include <iostream>
 
 /**
@@ -45,6 +47,17 @@ GtkPassWindow::GtkPassWindow(
     m_passwordLength(nullptr), m_passwordEntropy(nullptr),
     m_entropyLevel(nullptr), m_passwordEntry(nullptr),
     m_btnShowPassword(nullptr), m_btnGeneratePassword(nullptr) {
+
+    // store the length of the alphabet strings locally. This is just for
+    // convenience and to increase performance. Here we calculate the length
+    // only at startup, otherwise we would need to do this for every single
+    // update in the GUI.
+    m_alphaLength.emplace_back(std::strlen(ALPHA_LETTERS_LOWER));
+    m_alphaLength.emplace_back(std::strlen(ALPHA_LETTERS_UPPER));
+    m_alphaLength.emplace_back(std::strlen(ALPHA_NUMBERS));
+    m_alphaLength.emplace_back(std::strlen(ALPHA_SPACE));
+    m_alphaLength.emplace_back(std::strlen(ALPHA_DASH));
+    m_alphaLength.emplace_back(std::strlen(ALPHA_SPECIAL));
 
     m_refBuilder->get_widget("optionIncludeUpperCase", m_optionIncludeUpperCase);
     if (!m_optionIncludeUpperCase) {
@@ -142,6 +155,9 @@ GtkPassWindow::GtkPassWindow(
     );
     m_passwordLength->set_adjustment(m_passwordLengthAdjustment);
     m_passwordLength->set_wrap(false);
+    m_passwordLength->signal_changed().connect(
+        sigc::mem_fun(*this, &GtkPassWindow::on_lengthChanged)
+    );
 
     // add signal handler for clicking the generate button
     m_btnGeneratePassword->signal_clicked().connect(
@@ -151,6 +167,7 @@ GtkPassWindow::GtkPassWindow(
     m_btnShowPassword->signal_clicked().connect(
         sigc::mem_fun(*this, &GtkPassWindow::on_clickToggleButton)
     );
+    updateEntropy();
 }
 
 /**
@@ -184,6 +201,7 @@ void GtkPassWindow::on_check() {
     m_options.bIncludeSpace = m_optionIncludeSpace->get_active();
     m_options.bIncludeDash = m_optionIncludeDash->get_active();
     m_options.bIncludeSpecial = m_optionIncludeSpecial->get_active();
+    updateEntropy();
 }
 
 /**
@@ -202,4 +220,54 @@ void GtkPassWindow::generatePassword() {
  */
 void GtkPassWindow::on_clickToggleButton() {
     m_passwordEntry->set_visibility(m_btnShowPassword->get_active());
+}
+
+/**
+ * Calculates the possible password entropy and updates the widgets in the
+ * GUI.
+ */
+void GtkPassWindow::updateEntropy() {
+    double entropy {0};
+    unsigned long value {};
+
+    // add length of alphabet strings
+    if (m_options.bIncludeLettersLower)
+        entropy += m_alphaLength[0];
+    if (m_options.bIncludeLettersUpper)
+        entropy += m_alphaLength[1];
+    if (m_options.bIncludeNumbers)
+        entropy += m_alphaLength[2];
+    if (m_options.bIncludeSpace)
+        entropy += m_alphaLength[3];
+    if (m_options.bIncludeDash)
+        entropy += m_alphaLength[4];
+    if (m_options.bIncludeSpecial)
+        entropy += m_alphaLength[5];
+
+    // calculate entropy: entropy = log2(pow(numberOfChars, length))
+    entropy = std::pow(entropy, m_passwordLength->get_value());
+    entropy = std::ceil(std::log2(entropy));
+    value = static_cast<unsigned long>(entropy);
+    m_passwordEntropy->set_text("~ " + std::to_string(value) + " Bit");
+
+    // set the password quality level
+    if (value < 64) {
+        m_entropyLevel->set_value(1.0);
+    } else if (value >= 64 && value < 80) {
+        m_entropyLevel->set_value(2.0);
+    } else if (value >= 80 && value < 112) {
+        m_entropyLevel->set_value(3.0);
+    } else if (value >= 112 && value < 128) {
+        m_entropyLevel->set_value(4.0);
+    } else {
+        m_entropyLevel->set_value(5.0);
+    }
+}
+
+/**
+ * Signal handler for changing the length value of the password. Updates the
+ * entropy.
+ */
+void GtkPassWindow::on_lengthChanged() {
+    updateEntropy();
 }

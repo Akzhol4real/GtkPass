@@ -37,7 +37,7 @@
 /// Defines upper case characters
 #define ALPHA_LETTERS_UPPER "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 /// Defines numeric characters
-#define ALPHA_NUMBERS "01234567890"
+#define ALPHA_NUMBERS "0123456789"
 /// Defines the space character
 #define ALPHA_SPACE " "
 /// Defines the dash character

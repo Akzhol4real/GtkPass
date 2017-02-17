@@ -29,6 +29,7 @@
 
 #include "RandomGenerator.h"
 #include <gtkmm.h>
+#include <vector>
 
 class GtkPassWindow : public Gtk::ApplicationWindow {
 
@@ -42,6 +43,9 @@ private:
     Glib::RefPtr<Gtk::Builder> m_refBuilder;
     /// Options to use for password generation;
     genopts m_options;
+
+    /// Holds the length of the alphabet strings
+    std::vector<size_t> m_alphaLength;
 
     /// Pointer to check button for including upper case characters
     Gtk::CheckButton* m_optionIncludeUpperCase;
@@ -80,6 +84,12 @@ private:
     void generatePassword();
     /// Signal handler for clicking the show password button
     void on_clickToggleButton();
+    /// Signal handler for changing the password length
+    void on_lengthChanged();
+
+    /// Function for calculating the possible password entropy and updating the
+    /// widgets displaying it
+    void updateEntropy();
 
 }; // End of class GtkPassWindow
 
