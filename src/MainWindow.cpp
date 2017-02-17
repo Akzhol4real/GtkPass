@@ -145,6 +145,10 @@ GtkPassWindow::GtkPassWindow(
     m_btnGeneratePassword->signal_clicked().connect(
         sigc::mem_fun(*this, &GtkPassWindow::generatePassword)
     );
+    // add signal handler for clicking the toggle button
+    m_btnShowPassword->signal_clicked().connect(
+        sigc::mem_fun(*this, &GtkPassWindow::on_clickToggleButton)
+    );
 }
 
 /// Creates a new instance of \p GtkPassWindow and returns a pointer to it.
@@ -182,4 +186,12 @@ void GtkPassWindow::generatePassword() {
     m_passwordEntry->set_text(
         getRandomString(static_cast<uint32_t>(m_passwordLength->get_value()), m_options)
     );
+}
+
+/**
+ * Signal handler for clicking the toggle button to show the password. Gets the
+ * state of the toggle button and shows or hides the password.
+ */
+void GtkPassWindow::on_clickToggleButton() {
+    m_passwordEntry->set_visibility(m_btnShowPassword->get_active());
 }

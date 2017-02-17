@@ -78,6 +78,8 @@ private:
     void on_check();
     /// Signal handler for clicking the generate button
     void generatePassword();
+    /// Signal handler for clicking the show password button
+    void on_clickToggleButton();
 
 }; // End of class GtkPassWindow
 
