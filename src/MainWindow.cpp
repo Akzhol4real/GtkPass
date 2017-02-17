@@ -128,6 +128,13 @@ GtkPassWindow::GtkPassWindow(
         sigc::mem_fun(*this, &GtkPassWindow::on_check)
     );
 
+    // initialization of password length spinbutton
+    m_passwordLengthAdjustment = Gtk::Adjustment::create(
+        12.0, /* value */ 1.0, /* lower bound */ 100.0, /* upper bound */
+        1.0 /* step increment */
+    );
+    m_passwordLength->set_adjustment(m_passwordLengthAdjustment);
+    m_passwordLength->set_wrap(false);
 }
 
 /// Creates a new instance of \p GtkPassWindow and returns a pointer to it.

@@ -201,7 +201,6 @@
                                                         <property name="can_focus">True</property>
                                                         <property name="caps_lock_warning">False</property>
                                                         <property name="update_policy">if-valid</property>
-                                                        <property name="value">1</property>
                                                     </object>
                                                     <packing>
                                                         <property name="expand">False</property>
