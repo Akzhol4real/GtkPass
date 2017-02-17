@@ -27,6 +27,7 @@
 #ifndef GTKPASS_MAINWINDOW_H
 #define GTKPASS_MAINWINDOW_H
 
+#include "RandomGenerator.h"
 #include <gtkmm.h>
 
 class GtkPassWindow : public Gtk::ApplicationWindow {
@@ -39,6 +40,33 @@ public:
 private:
     /// \p Glib::RefPtr to a \p Gtk::Builder for GUI construction
     Glib::RefPtr<Gtk::Builder> m_refBuilder;
+    /// Options to use for password generation;
+    genopts m_options;
+
+    /// Pointer to check button for including upper case characters
+    Gtk::CheckButton* m_optionIncludeUpperCase;
+    /// Pointer to check button for including lower case characters
+    Gtk::CheckButton* m_optionIncludeLowerCase;
+    /// Pointer to check button for including numbers
+    Gtk::CheckButton* m_optionIncludeNumeric;
+    /// Pointer to check button for including special characters
+    Gtk::CheckButton* m_optionIncludeSpecial;
+    /// Pointer to check button for including dash character
+    Gtk::CheckButton* m_optionIncludeDash;
+    /// Pointer to check button for including space character
+    Gtk::CheckButton* m_optionIncludeSpace;
+
+    /// Pointer to the spin button controlling the length of the password
+    Gtk::SpinButton* m_passwordLength;
+    /// Pointer to the spin button displaying the password's entropy
+    Gtk::SpinButton* m_passwordEntropy;
+
+    /// Pointer to the entry field holding the password
+    Gtk::Entry* m_passwordEntry;
+    /// Pointer to the toggle button for showing and hiding the password
+    Gtk::ToggleButton* m_btnShowPassword;
+    /// Pointer to the button for generating the password
+    Gtk::Button* m_btnGeneratePassword;
 
 }; // End of class GtkPassWindow
 

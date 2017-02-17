@@ -26,6 +26,7 @@
 
 #include "MainWindow.h"
 #include <stdexcept>
+#include <iostream>
 
 /// Constructor of \p GtkPassWindow. Initializes member variables and loads
 /// the GUI description from their XML-files.
@@ -35,7 +36,77 @@
 /// \param builder Constant reference to a \p Gtk::Builder
 GtkPassWindow::GtkPassWindow(
     BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder) :
-    Gtk::ApplicationWindow(cobject), m_refBuilder(builder) {
+    Gtk::ApplicationWindow(cobject), m_refBuilder(builder), m_options(),
+    m_optionIncludeUpperCase(nullptr), m_optionIncludeLowerCase(nullptr),
+    m_optionIncludeNumeric(nullptr), m_optionIncludeSpecial(nullptr),
+    m_optionIncludeDash(nullptr), m_optionIncludeSpace(nullptr),
+    m_passwordLength(nullptr), m_passwordEntropy(nullptr),
+    m_passwordEntry(nullptr), m_btnShowPassword(nullptr),
+    m_btnGeneratePassword(nullptr) {
+
+    m_refBuilder->get_widget("optionIncludeUpperCase", m_optionIncludeUpperCase);
+    if (!m_optionIncludeUpperCase) {
+        throw std::runtime_error("No \"optionIncludeUpperCase\" object in ui file!");
+    }
+
+    m_refBuilder->get_widget("optionIncludeLowerCase", m_optionIncludeLowerCase);
+    if (!m_optionIncludeLowerCase) {
+        throw std::runtime_error("No \"optionIncludeLowerCase\" object in ui file!");
+    }
+
+    m_refBuilder->get_widget("optionIncludeNumeric", m_optionIncludeNumeric);
+    if (!m_optionIncludeNumeric) {
+        throw std::runtime_error("No \"optionIncludeNumeric\" object in ui file!");
+    }
+
+    m_refBuilder->get_widget("optionIncludeSpecial", m_optionIncludeSpecial);
+    if (!m_optionIncludeSpecial) {
+        throw std::runtime_error("No \"optionIncludeSpecial\" object in ui file!");
+    }
+
+    m_refBuilder->get_widget("optionIncludeDash", m_optionIncludeDash);
+    if (!m_optionIncludeDash) {
+        throw std::runtime_error("No \"optionIncludeDash\" object in ui file");
+    }
+
+    m_refBuilder->get_widget("optionIncludeSpace", m_optionIncludeSpace);
+    if (!m_optionIncludeSpace) {
+        throw std::runtime_error("No \"optionIncludeSpace\" object in ui file");
+    }
+
+    m_refBuilder->get_widget("passwordLength", m_passwordLength);
+    if (!m_passwordLength) {
+        throw std::runtime_error("No \"passwordLength\" object in ui file!");
+    }
+
+    m_refBuilder->get_widget("passwordEntropy", m_passwordEntropy);
+    if (!m_passwordEntropy) {
+        throw std::runtime_error("No \"passwordEntropy\" object in ui file!");
+    }
+
+    m_refBuilder->get_widget("entryPassword", m_passwordEntry);
+    if (!m_passwordEntry) {
+        throw std::runtime_error("No \"entryPassword\" object in ui file!");
+    }
+
+    m_refBuilder->get_widget("btnShowPassword", m_btnShowPassword);
+    if (!m_btnShowPassword) {
+        throw std::runtime_error("No \"btnShowPassword\" object in ui file!");
+    }
+
+    m_refBuilder->get_widget("btnGeneratePassword", m_btnGeneratePassword);
+    if (!m_btnGeneratePassword) {
+        throw std::runtime_error("No \"btnGeneratePassword\" object in ui file!");
+    }
+
+
+    // set the default options
+    m_optionIncludeLowerCase->set_active(m_options.bIncludeLettersLower);
+    m_optionIncludeUpperCase->set_active(m_options.bIncludeLettersUpper);
+    m_optionIncludeNumeric->set_active(m_options.bIncludeNumbers);
+    m_optionIncludeSpecial->set_active(m_options.bIncludeSpecial);
+    m_optionIncludeSpace->set_active(m_options.bIncludeSpace);
+    m_optionIncludeDash->set_active(m_options.bIncludeDash);
 
 }
 
