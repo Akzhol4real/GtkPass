@@ -28,7 +28,6 @@
 #include <stdexcept>
 #include <cstring>
 #include <cmath>
-#include <iostream>
 
 /**
  * Constructor of \p GtkPassWindow. Initializes member variables and loads
