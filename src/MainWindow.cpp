@@ -108,6 +108,26 @@ GtkPassWindow::GtkPassWindow(
     m_optionIncludeSpace->set_active(m_options.bIncludeSpace);
     m_optionIncludeDash->set_active(m_options.bIncludeDash);
 
+    // connect check boxes to signal handler
+    m_optionIncludeLowerCase->signal_clicked().connect(
+        sigc::mem_fun(*this, &GtkPassWindow::on_check)
+    );
+    m_optionIncludeUpperCase->signal_clicked().connect(
+        sigc::mem_fun(*this, &GtkPassWindow::on_check)
+    );
+    m_optionIncludeNumeric->signal_clicked().connect(
+        sigc::mem_fun(*this, &GtkPassWindow::on_check)
+    );
+    m_optionIncludeSpace->signal_clicked().connect(
+        sigc::mem_fun(*this, &GtkPassWindow::on_check)
+    );
+    m_optionIncludeDash->signal_clicked().connect(
+        sigc::mem_fun(*this, &GtkPassWindow::on_check)
+    );
+    m_optionIncludeSpecial->signal_clicked().connect(
+        sigc::mem_fun(*this, &GtkPassWindow::on_check)
+    );
+
 }
 
 /// Creates a new instance of \p GtkPassWindow and returns a pointer to it.
@@ -126,4 +146,15 @@ GtkPassWindow* GtkPassWindow::create() {
         throw std::runtime_error("No \"applicationWindow\" object in resource!");
     }
     return window;
+}
+
+/// Signal handler for changing the state of one of the checkboxes. Updates the
+/// state of the member variable \p m_options.
+void GtkPassWindow::on_check() {
+    m_options.bIncludeLettersLower = m_optionIncludeLowerCase->get_active();
+    m_options.bIncludeLettersUpper = m_optionIncludeUpperCase->get_active();
+    m_options.bIncludeNumbers = m_optionIncludeNumeric->get_active();
+    m_options.bIncludeSpace = m_optionIncludeSpace->get_active();
+    m_options.bIncludeDash = m_optionIncludeDash->get_active();
+    m_options.bIncludeSpecial = m_optionIncludeSpecial->get_active();
 }

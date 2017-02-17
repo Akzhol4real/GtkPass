@@ -68,6 +68,9 @@ private:
     /// Pointer to the button for generating the password
     Gtk::Button* m_btnGeneratePassword;
 
+    /// Signal handler for checking the check boxes
+    void on_check();
+
 }; // End of class GtkPassWindow
 
 #endif
