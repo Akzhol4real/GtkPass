@@ -78,6 +78,39 @@ private:
     /// Pointer to the button for generating the password
     Gtk::Button* m_btnGeneratePassword;
 
+    /// Intelligent Pointer to a \p Gtk::CssProvider
+    Glib::RefPtr<Gtk::CssProvider> m_css;
+    /// Intelligent Pointer to the style context
+    Glib::RefPtr<Gtk::StyleContext> m_styleCtx;
+    /// Intelligent Pointer to the default screen
+    Glib::RefPtr<Gdk::Screen> m_screen;
+
+    /// String storing the CSS data for red level bar
+    const std::string m_cssLvl1 = ".level-bar.fill-block.level-high {"
+        "    border-color: red;"
+        "    background-color: red;"
+        "}";
+    /// String storing the CSS data for orange level bar
+    const std::string m_cssLvl2 = ".level-bar.fill-block.level-high {"
+        "    border-color: orange;"
+        "    background-color: orange;"
+        "}";
+    /// String storing the CSS data for yellow level bar
+    const std::string m_cssLvl3 = ".level-bar.fill-block.level-high {"
+        "    border-color: yellow;"
+        "    background-color: yellow;"
+        "}";
+    /// String storing the CSS data for yellow green level bar
+    const std::string m_cssLvl4 = ".level-bar.fill-block.level-high {"
+        "    border-color: yellowgreen;"
+        "    background-color: yellowgreen;"
+        "}";
+    /// String storing the CSS data for green level bar
+    const std::string m_cssLvl5 = ".level-bar.fill-block.level-high {"
+        "    border-color: green;"
+        "    background-color: green;"
+        "}";
+
     /// Signal handler for checking the check boxes
     void on_check();
     /// Signal handler for clicking the generate button

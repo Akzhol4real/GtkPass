@@ -45,7 +45,9 @@ GtkPassWindow::GtkPassWindow(
     m_optionIncludeDash(nullptr), m_optionIncludeSpace(nullptr),
     m_passwordLength(nullptr), m_passwordEntropy(nullptr),
     m_entropyLevel(nullptr), m_passwordEntry(nullptr),
-    m_btnShowPassword(nullptr), m_btnGeneratePassword(nullptr) {
+    m_btnShowPassword(nullptr), m_btnGeneratePassword(nullptr),
+    m_css(Gtk::CssProvider::create()), m_styleCtx(this->get_style_context()),
+    m_screen(Gdk::Screen::get_default()) {
 
     // store the length of the alphabet strings locally. This is just for
     // convenience and to increase performance. Here we calculate the length
@@ -228,6 +230,7 @@ void GtkPassWindow::on_clickToggleButton() {
 void GtkPassWindow::updateEntropy() {
     double entropy {0};
     unsigned long value {};
+    std::string cssData;
 
     // add length of alphabet strings
     if (m_options.bIncludeLettersLower)
@@ -252,15 +255,24 @@ void GtkPassWindow::updateEntropy() {
     // set the password quality level
     if (value < 64) {
         m_entropyLevel->set_value(1.0);
+        cssData = m_cssLvl1;
     } else if (value >= 64 && value < 80) {
         m_entropyLevel->set_value(2.0);
-    } else if (value >= 80 && value < 112) {
+        cssData = m_cssLvl2;
+    } else if (value >= 80 && value < 96) {
         m_entropyLevel->set_value(3.0);
-    } else if (value >= 112 && value < 128) {
+        cssData = m_cssLvl3;
+    } else if (value >= 96 && value < 112) {
         m_entropyLevel->set_value(4.0);
+        cssData = m_cssLvl4;
     } else {
         m_entropyLevel->set_value(5.0);
+        cssData = m_cssLvl5;
     }
+
+    // update the color of the level bar by applying css style
+    m_css->load_from_data(cssData);
+    m_styleCtx->add_provider_for_screen(m_screen, m_css, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 }
 
 /**
