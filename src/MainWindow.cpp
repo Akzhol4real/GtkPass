@@ -193,7 +193,8 @@ GtkPassWindow* GtkPassWindow::create() {
 
 /**
  * Signal handler for changing the state of one of the checkboxes. Updates the
- * state of the member variable \p m_options.
+ * state of the member variable \p m_options. It also disables the generate
+ * button if no options are chosen.
  */
 void GtkPassWindow::on_check() {
     m_options.bIncludeLettersLower = m_optionIncludeLowerCase->get_active();
@@ -202,6 +203,17 @@ void GtkPassWindow::on_check() {
     m_options.bIncludeSpace = m_optionIncludeSpace->get_active();
     m_options.bIncludeDash = m_optionIncludeDash->get_active();
     m_options.bIncludeSpecial = m_optionIncludeSpecial->get_active();
+
+    // enable/disable button
+    if (m_options.bIncludeLettersLower || m_options.bIncludeLettersUpper ||
+        m_options.bIncludeNumbers || m_options.bIncludeSpecial ||
+        m_options.bIncludeDash || m_options.bIncludeSpace) {
+
+        m_btnGeneratePassword->set_sensitive(true);
+    } else {
+        m_btnGeneratePassword->set_sensitive(false);
+    }
+
     updateEntropy();
 }
 
@@ -247,10 +259,15 @@ void GtkPassWindow::updateEntropy() {
         entropy += m_alphaLength[5];
 
     // calculate entropy: entropy = log2(pow(numberOfChars, length))
-    entropy = std::pow(entropy, m_passwordLength->get_value());
-    entropy = std::ceil(std::log2(entropy));
-    value = static_cast<unsigned long>(entropy);
-    m_passwordEntropy->set_text("~ " + std::to_string(value) + " Bit");
+    if (entropy > 0) {
+        entropy = std::pow(entropy, m_passwordLength->get_value());
+        entropy = std::ceil(std::log2(entropy));
+        value = static_cast<unsigned long>(entropy);
+        m_passwordEntropy->set_text("~ " + std::to_string(value) + " Bit");
+    } else {
+        m_passwordEntropy->set_text("0 Bit");
+        value = 0;
+    }
 
     // set the password quality level
     if (value < 64) {
