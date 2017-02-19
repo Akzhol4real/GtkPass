@@ -29,6 +29,7 @@
 *.app
 
 # autotools stuff
+configure
 aux_build/
 autom4te.cache/
 config.h.in
