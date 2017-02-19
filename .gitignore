@@ -51,6 +51,8 @@ intltool-*.in
 *.mo
 *.pot
 m4/
+build/
+doc/
 
 # autosave files
 *~

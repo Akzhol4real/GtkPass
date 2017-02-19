@@ -26,8 +26,7 @@ This project is based on the good old `Autotools`. Therefore for compiling and i
 
 ```
 ./autogen.sh
-cd build
-../configure
+./configure
 make
 make install
 ```
