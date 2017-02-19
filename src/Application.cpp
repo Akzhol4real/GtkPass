@@ -27,6 +27,7 @@
 #include "Application.h"
 #include <config.h>
 #include <iostream>
+#include <vector>
 
 /**
  * Constructor of p GtkPassApplication. Initializes the base object and sets
@@ -34,7 +35,20 @@
  */
 GtkPassApplication::GtkPassApplication() :
     Gtk::Application("org.darth-revan.gtkpass")
-    {}
+    {
+        // set information for about dialog on startup
+        m_aboutDialog.set_program_name(PACKAGE_NAME);
+        m_aboutDialog.set_version(PACKAGE_VERSION);
+        m_aboutDialog.set_comments("A password generator with GTK-based graphical user interface.");
+        m_aboutDialog.set_license_type(Gtk::LICENSE_GPL_3_0);
+        m_aboutDialog.set_copyright(PROGRAM_AUTHOR);
+        m_aboutDialog.set_website("https://github.com/Darth-Revan/GtkPass");
+        m_aboutDialog.set_website_label("Visit on GitHub");
+        
+        std::vector<Glib::ustring> v_authors;
+        v_authors.push_back(PROGRAM_AUTHOR);
+        m_aboutDialog.set_authors(v_authors);
+    }
 
 
 /**
@@ -83,10 +97,48 @@ void GtkPassApplication::on_activate() {
 }
 
 /**
+ * Overrides standard handler for \p on_startup(). Calls the original function
+ * and builds the application's menu by using a \p Gtk::Builder.
+ */
+void GtkPassApplication::on_startup() {
+    Gtk::Application::on_startup();
+    add_action("about",
+        sigc::mem_fun(*this, &GtkPassApplication::on_actionAbout));
+
+    // create the builder
+    auto refBuilder = Gtk::Builder::create();
+    try {
+        refBuilder->add_from_resource("/org/darth-revan/gtkpass/appMenu.ui");
+    } catch (const Glib::Error& ex) {
+        std::cerr << "GtkPassApplication::on_startup(): " << ex.what()
+            << std::endl;
+        return;
+    }
+
+    // load the menu from resource and set it as menu
+    auto obj = refBuilder->get_object("appmenu");
+    auto appMenu = Glib::RefPtr<Gio::MenuModel>::cast_dynamic(obj);
+    if (appMenu)
+        set_app_menu(appMenu);
+    else
+        std::cerr << "GtkPassApplication::on_startup(): No \"appmenu\" object in appMenu.ui!" << std::endl;
+}
+
+/**
  * Signal handler for hiding the application's window.
  *
  * \param window Pointer to the window that gets hidden.
  */
 void GtkPassApplication::on_hide_window(Gtk::Window* window) {
     delete window;
+}
+
+/**
+ * Handler for clicking on the menu item "About". Shows a simple about dialog
+ * for the application.
+ */
+void GtkPassApplication::on_actionAbout() {
+    m_aboutDialog.set_transient_for(*(this->get_active_window()));
+    m_aboutDialog.show();
+    m_aboutDialog.present();
 }

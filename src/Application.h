@@ -38,10 +38,13 @@ public:
 protected:
     GtkPassApplication();
     void on_activate() override;
+    void on_startup() override;
 
 private:
+    Gtk::AboutDialog m_aboutDialog;
     GtkPassWindow* createApplicationWindow();
     void on_hide_window(Gtk::Window* window);
+    void on_actionAbout();
 
 }; // end of class GtkPassApplication
 
