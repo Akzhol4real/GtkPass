@@ -18,13 +18,7 @@ If the user does not select at least one option, the button for starting the pas
 
 On clicking the "Generate"-button the application will fetch random numbers from `/dev/urandom` or `/dev/random` by using [libsodium](https://github.com/jedisct1/libsodium/) (a fork of [NaCl](http://nacl.cr.yp.to/)). These random numbers will be used to select the characters from the input alphabet and then concatenated to the final password.
 
-An additional feature is the calculation of the theoretical password entropy as a factor of password security. _GtkPass_ calculates and displays the entropy and shows a colored bar indicating the theoretical security the password may provide (entropy is a property generation process, not a concrete password itself; see [crypto.stackexchange.com](https://crypto.stackexchange.com/questions/19620/how-to-calculate-the-entropy-of-passwords)). Calculation is done as follows:
-
-$$
-Entropy = log2((L_{Alphabet})^{L_{Password}})
-$$
-
-where $L_{Alphabet}$ is the length of the input set (the number of characters in the alphabet) and $L_{Password}$ is the length of the password to generate. $log2$ is the logarithm to the base 2, of course.
+An additional feature is the calculation of the theoretical password entropy as a factor of password security. _GtkPass_ calculates and displays the entropy and shows a colored bar indicating the theoretical security the password may provide (entropy is a property generation process, not a concrete password itself; see [crypto.stackexchange.com](https://crypto.stackexchange.com/questions/19620/how-to-calculate-the-entropy-of-passwords)).
 
 ## Compiling & Installation
 
