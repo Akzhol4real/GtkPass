@@ -44,7 +44,8 @@ GtkPassApplication::GtkPassApplication() :
         m_aboutDialog.set_copyright(PROGRAM_AUTHOR);
         m_aboutDialog.set_website("https://github.com/Darth-Revan/GtkPass");
         m_aboutDialog.set_website_label("Visit on GitHub");
-        
+        m_aboutDialog.set_logo_icon_name("gtk-pass");
+
         std::vector<Glib::ustring> v_authors;
         v_authors.push_back(PROGRAM_AUTHOR);
         m_aboutDialog.set_authors(v_authors);
