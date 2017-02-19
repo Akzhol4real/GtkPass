@@ -1,0 +1,141 @@
+# German translations for gtkpass package
+# German translation for gtkpass.
+# Copyright (C) 2017 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gtkpass package.
+# Darth-Revan <S1610304005@students.fh-hagenberg.at>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtkpass 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Darth-Revan/GtkPass/issues\n"
+"POT-Creation-Date: 2017-02-19 21:26+0100\n"
+"PO-Revision-Date: 2017-02-19 21:32+0100\n"
+"Last-Translator: Darth-Revan <S1610304005@students.fh-hagenberg.at>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#: data/window.ui:50
+msgid "Upper case characters (A,B,C,...,Z)"
+msgstr "Großbuchstaben (A,B,C,...Z)"
+
+#: data/window.ui:54
+msgid "Check to include upper case characters."
+msgstr "Ankreuzen, um Großbuchstaben zu verwenden"
+
+#: data/window.ui:65
+msgid "Lower case characters (a,b,c,...,z)"
+msgstr "Kleinbuchstaben (a,b,c,...,z)"
+
+#: data/window.ui:69
+msgid "Check to include lower case characters."
+msgstr "Ankreuzen, um Kleinbuchstaben zu verwenden"
+
+#: data/window.ui:80
+msgid "Numbers (0,1,...,9)"
+msgstr "Ziffern (0,1,...,9)"
+
+#: data/window.ui:84
+msgid "Check to include numbers."
+msgstr "Ankreuzen, um Ziffern zu verwenden"
+
+#: data/window.ui:95
+msgid "Special characters"
+msgstr "Sonderzeichen"
+
+#: data/window.ui:99
+msgid "Check to include special characters (except Dash and Space)."
+msgstr "Ankreuzen, um Sonderzeichen (außer Bindestrich und Leerzeichen) zu verwenden"
+
+#: data/window.ui:110
+msgid "Space character ( )"
+msgstr "Leerzeichen ( )"
+
+#: data/window.ui:114
+msgid "Check to include space character ( )."
+msgstr "Ankreuzen, um Leerzeichen ( ) zu verwenden"
+
+#: data/window.ui:125
+msgid "Dash character (-)"
+msgstr "Bindestrich (-)"
+
+#: data/window.ui:129
+msgid "Check to include dash character (-)."
+msgstr "Ankreuzen, um Bindestrich (-) zu verwenden"
+
+#: data/window.ui:146
+msgid "Number of characters in input set:"
+msgstr "Anzahl der Zeichen im Eingabealphabet:"
+
+#: data/window.ui:161
+msgid "0"
+msgstr "0"
+
+#: data/window.ui:178
+msgid "Input alphabet"
+msgstr "Eingabealphabet"
+
+#: data/window.ui:209
+msgid "The number of characters in the password."
+msgstr "Anzahl der Zeichen im Passwort"
+
+#: data/window.ui:220
+msgid "Password Length:"
+msgstr "Passwortlänge:"
+
+#: data/window.ui:252
+msgid "The password's entropy in Bits."
+msgstr "Die Entropie des Passworts in Bit:"
+
+#: data/window.ui:263
+msgid "Password Entropy in Bits:"
+msgstr "Passwortentropie:"
+
+#: data/window.ui:280
+msgid "0 Bits"
+msgstr "0 Bits"
+
+#: data/window.ui:325
+msgid "Length and Entropy"
+msgstr "Länge und Entropie"
+
+#: data/window.ui:374
+msgid "Show the password."
+msgstr "Zeige das Passwort"
+
+#: data/window.ui:388
+msgid "Generate"
+msgstr "Generieren"
+
+#: data/window.ui:392
+msgid "Generate the passsword."
+msgstr "Generiert ein Passwort."
+
+#: data/window.ui:410
+msgid "Generate Password"
+msgstr "Passwort generieren"
+
+#: data/appMenu.ui:6
+msgid "_About"
+msgstr "_Über"
+
+#: data/gtkpass.desktop.in:3 data/gtkpass.desktop.in:4
+#: data/gtkpass.desktop.in:13
+msgid "GtkPass"
+msgstr "GtkPass"
+
+#: data/gtkpass.desktop.in:5 src/Application.cpp:43
+msgid "A password generator with GTK-based graphical user interface."
+msgstr "Ein Passwortgenerator mit GTK-basierter grafischer Oberfläche."
+
+#: data/gtkpass.desktop.in:6
+msgid "key;password;security;"
+msgstr "Schlüssel;Passwort;Sicherheit;"
+
+#: src/Application.cpp:47
+msgid "Visit on GitHub"
+msgstr "Auf GitHub besuchen"
