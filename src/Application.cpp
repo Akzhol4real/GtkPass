@@ -28,6 +28,7 @@
 #include <config.h>
 #include <iostream>
 #include <vector>
+#include <glibmm/i18n.h>
 
 /**
  * Constructor of p GtkPassApplication. Initializes the base object and sets
@@ -39,11 +40,11 @@ GtkPassApplication::GtkPassApplication() :
         // set information for about dialog on startup
         m_aboutDialog.set_program_name(PACKAGE_NAME);
         m_aboutDialog.set_version(PACKAGE_VERSION);
-        m_aboutDialog.set_comments("A password generator with GTK-based graphical user interface.");
+        m_aboutDialog.set_comments(_("A password generator with GTK-based graphical user interface."));
         m_aboutDialog.set_license_type(Gtk::LICENSE_GPL_3_0);
         m_aboutDialog.set_copyright(PROGRAM_AUTHOR);
         m_aboutDialog.set_website("https://github.com/Darth-Revan/GtkPass");
-        m_aboutDialog.set_website_label("Visit on GitHub");
+        m_aboutDialog.set_website_label(_("Visit on GitHub"));
         m_aboutDialog.set_logo_icon_name("GtkPass");
 
         std::vector<Glib::ustring> v_authors;

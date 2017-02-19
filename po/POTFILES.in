@@ -1,1 +1,5 @@
 # list of files to translate
+data/window.ui
+data/appMenu.ui
+data/gtkpass.desktop.in
+src/Application.cpp
