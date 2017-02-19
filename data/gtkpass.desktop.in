@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=GtkPass
+GenericName=GtkPass
+Comment=A password generator with GTK-based graphical user interface.
+Keywords=key;password;security;
+Version=1.0
+Exec=GtkPass
+Terminal=false
+Type=Application
+Categories=GTK;Utility;
+StartupNotify=true
+Icon=GtkPass

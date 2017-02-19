@@ -7,14 +7,14 @@ icon256dir = $(datadir)/icons/hicolor/256x256/apps
 icon512dir = $(datadir)/icons/hicolor/512x512/apps
 iconscalabledir = $(datadir)/icons/hicolor/scalable/apps
 
-icon16_DATA = 16x16/gtk-pass.png
-icon22_DATA = 22x22/gtk-pass.png
-icon24_DATA = 24x24/gtk-pass.png
-icon32_DATA = 32x32/gtk-pass.png
-icon48_DATA = 48x48/gtk-pass.png
-icon256_DATA = 256x256/gtk-pass.png
-icon512_DATA = 512x512/gtk-pass.png
-iconscalable_DATA = scalable/gtk-pass-symbolic.svg
+icon16_DATA = 16x16/GtkPass.png
+icon22_DATA = 22x22/GtkPass.png
+icon24_DATA = 24x24/GtkPass.png
+icon32_DATA = 32x32/GtkPass.png
+icon48_DATA = 48x48/GtkPass.png
+icon256_DATA = 256x256/GtkPass.png
+icon512_DATA = 512x512/GtkPass.png
+iconscalable_DATA = scalable/GtkPass-symbolic.svg
 
 EXTRA_DIST = \
   $(icon16_DATA) \
