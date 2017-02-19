@@ -1,18 +1,11 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 SUBDIRS = src data po
-
-INTLTOOL_FILES = \
-  intltool-extract.in \
-  intltool-merge.in \
-  intltool-update.in
+DIST_SUBDIRS = src data po
 
 dist_doc_DATA = \
   README.md \
   LICENSE
-
-EXTRA_DIST = \
-  $(INTLTOOL_FILES)
 
 DISTCLEANFILES = \
   intltool-extract \
