@@ -90,6 +90,11 @@ GtkPassWindow::GtkPassWindow(
         throw std::runtime_error("No \"optionIncludeSpace\" object in ui file");
     }
 
+    m_refBuilder->get_widget("labelCharCount", m_characterCount);
+    if (!m_characterCount) {
+        throw std::runtime_error("No \"labelCharCount\" object in ui file!");
+    }
+
     m_refBuilder->get_widget("passwordLength", m_passwordLength);
     if (!m_passwordLength) {
         throw std::runtime_error("No \"passwordLength\" object in ui file!");
@@ -257,6 +262,9 @@ void GtkPassWindow::updateEntropy() {
         entropy += m_alphaLength[4];
     if (m_options.bIncludeSpecial)
         entropy += m_alphaLength[5];
+
+    // set character count in ui
+    m_characterCount->set_text(std::to_string(static_cast<int>(entropy)));
 
     // calculate entropy: entropy = log2(pow(numberOfChars, length))
     if (entropy > 0) {

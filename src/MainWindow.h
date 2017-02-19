@@ -59,6 +59,8 @@ private:
     Gtk::CheckButton* m_optionIncludeDash;
     /// Pointer to check button for including space character
     Gtk::CheckButton* m_optionIncludeSpace;
+    /// Label displaying the number of chars in input set
+    Gtk::Label* m_characterCount;
 
     /// Pointer to the spin button controlling the length of the password
     Gtk::SpinButton* m_passwordLength;
