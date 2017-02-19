@@ -34,10 +34,22 @@ autom4te.cache/
 config.h.in
 Makefile
 Makefile.in
+Makefile.in.in
+*.sed
+*.header
+Rules-quot
+*.sin
+*.template
 stamp-h1
 config.log
 config.status
 aclocal.m4
+ABOUT-NLS
+intltool-*.in
+*.gmo
+*.mo
+*.pot
+m4/
 
 # autosave files
 *~

@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = src data
+SUBDIRS = src data po
 
 INTLTOOL_FILES = \
   intltool-extract.in \
@@ -17,6 +17,7 @@ EXTRA_DIST = \
 DISTCLEANFILES = \
   intltool-extract \
   intltool-merge \
-  intltool-update
+  intltool-update \
+  po/.intltool-merge-cache
 
 uninstall-local: ; rm -r $(docdir)

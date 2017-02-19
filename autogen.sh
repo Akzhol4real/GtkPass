@@ -12,4 +12,5 @@ fi
     exit 1
 }
 
-autoreconf --verbose --force --install . || exit 1
+aclocal --install || exit 1
+autoreconf --verbose --force --install || exit 1

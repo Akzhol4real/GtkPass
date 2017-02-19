@@ -6,8 +6,11 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_HEADERS([config.h])
 
-AM_INIT_AUTOMAKE([1.11 dist-xz foreign subdir-objects])
+AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-xz foreign subdir-objects])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+
+# define makros
+AC_DEFINE(PROGRAM_AUTHOR, "Kevin Kirchner", [The author's name])
 
 AC_PROG_CC
 AC_PROG_CXX
@@ -30,9 +33,21 @@ GLIB_COMPILE_RESOURCES=`$PKG_CONFIG --variable glib_compile_resources gio-2.0`
 AC_SUBST(GLIB_COMPILE_RESOURCES)
 APPSTREAM_XML
 
+# Translation stuff
+GETTEXT_PACKAGE=GtkPass
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [The gettext domain])
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.6])
+GTKPASS_LOCALEDIR=[${datadir}/locale]
+AC_SUBST(GTKPASS_LOCALEDIR)
+
 AC_CONFIG_FILES([
   Makefile
+  po/Makefile.in
   src/Makefile
   data/Makefile
+  data/icons/Makefile
+  data/icons/hicolor/Makefile
 ])
 AC_OUTPUT
