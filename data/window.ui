@@ -47,7 +47,7 @@
                     <property name="column_spacing">15</property>
                     <child>
                       <object class="GtkCheckButton" id="optionIncludeUpperCase">
-                        <property name="label" translatable="yes">Include upper case characters</property>
+                        <property name="label" translatable="yes">Upper case characters (A,B,C,...,Z)</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -62,7 +62,7 @@
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="optionIncludeLowerCase">
-                        <property name="label" translatable="yes">Include lower case characters</property>
+                        <property name="label" translatable="yes">Lower case characters (a,b,c,...,z)</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -77,7 +77,7 @@
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="optionIncludeNumeric">
-                        <property name="label" translatable="yes">Include numeric characters</property>
+                        <property name="label" translatable="yes">Numbers (0,1,...,9)</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -92,7 +92,7 @@
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="optionIncludeSpecial">
-                        <property name="label" translatable="yes">Include special characters</property>
+                        <property name="label" translatable="yes">Special characters</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -107,11 +107,11 @@
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="optionIncludeSpace">
-                        <property name="label" translatable="yes">Include space character (" ")</property>
+                        <property name="label" translatable="yes">Space character ( )</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Check to include space character (" ").</property>
+                        <property name="tooltip_text" translatable="yes">Check to include space character ( ).</property>
                         <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
                       </object>
@@ -122,11 +122,11 @@
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="optionIncludeDash">
-                        <property name="label" translatable="yes">Include dash character ("-")</property>
+                        <property name="label" translatable="yes">Dash character (-)</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Check to include dash character ("-").</property>
+                        <property name="tooltip_text" translatable="yes">Check to include dash character (-).</property>
                         <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
                       </object>
@@ -145,7 +145,7 @@
                 <property name="can_focus">False</property>
                 <property name="margin_left">5</property>
                 <property name="margin_right">5</property>
-                <property name="label" translatable="yes">Options</property>
+                <property name="label" translatable="yes">Input alphabet</property>
               </object>
             </child>
           </object>
