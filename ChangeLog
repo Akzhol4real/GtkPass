@@ -1,0 +1,10 @@
+Version 0.3.0 - 22nd February 2017
+    - Added feature allowing to avoid visually similar characters in password
+    - Added german translation for GUI changes
+    - Added tests for removing visually similar characters from password alphabet
+
+Version 0.2.0 - 19th February 2017
+    - Added german translation
+
+Version 0.1.0 - 18th February 2017
+    - Initial release

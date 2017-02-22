@@ -1,5 +1,5 @@
 AC_PREREQ([2.69])
-AC_INIT([GtkPass], [0.2.0], [https://github.com/Darth-Revan/GtkPass/issues])
+AC_INIT([GtkPass], [0.3.0], [https://github.com/Darth-Revan/GtkPass/issues])
 
 AC_CONFIG_AUX_DIR([aux_build])
 AC_CONFIG_MACRO_DIR([m4])
