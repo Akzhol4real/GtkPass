@@ -43,6 +43,7 @@ GtkPassWindow::GtkPassWindow(
     m_optionIncludeUpperCase(nullptr), m_optionIncludeLowerCase(nullptr),
     m_optionIncludeNumeric(nullptr), m_optionIncludeSpecial(nullptr),
     m_optionIncludeDash(nullptr), m_optionIncludeSpace(nullptr),
+    m_optionAvoidSimilar(nullptr),
     m_passwordLength(nullptr), m_passwordEntropy(nullptr),
     m_entropyLevel(nullptr), m_passwordEntry(nullptr),
     m_btnShowPassword(nullptr), m_btnGeneratePassword(nullptr),
@@ -59,6 +60,7 @@ GtkPassWindow::GtkPassWindow(
     m_alphaLength.emplace_back(std::strlen(ALPHA_SPACE));
     m_alphaLength.emplace_back(std::strlen(ALPHA_DASH));
     m_alphaLength.emplace_back(std::strlen(ALPHA_SPECIAL));
+    m_alphaLength.emplace_back(std::strlen(ALPHA_SIMILAR));
 
     m_refBuilder->get_widget("optionIncludeUpperCase", m_optionIncludeUpperCase);
     if (!m_optionIncludeUpperCase) {
@@ -93,6 +95,11 @@ GtkPassWindow::GtkPassWindow(
     m_refBuilder->get_widget("labelCharCount", m_characterCount);
     if (!m_characterCount) {
         throw std::runtime_error("No \"labelCharCount\" object in ui file!");
+    }
+
+    m_refBuilder->get_widget("optionAvoidSimilarChars", m_optionAvoidSimilar);
+    if (!m_optionAvoidSimilar) {
+        throw std::runtime_error("No \"optionAvoidSimilarChars\" object in ui file!");
     }
 
     m_refBuilder->get_widget("passwordLength", m_passwordLength);
@@ -133,6 +140,7 @@ GtkPassWindow::GtkPassWindow(
     m_optionIncludeSpecial->set_active(m_options.bIncludeSpecial);
     m_optionIncludeSpace->set_active(m_options.bIncludeSpace);
     m_optionIncludeDash->set_active(m_options.bIncludeDash);
+    m_optionAvoidSimilar->set_active(m_options.bAvoidSimilarChars);
 
     // connect check boxes to signal handler
     m_optionIncludeLowerCase->signal_clicked().connect(
@@ -151,6 +159,9 @@ GtkPassWindow::GtkPassWindow(
         sigc::mem_fun(*this, &GtkPassWindow::on_check)
     );
     m_optionIncludeSpecial->signal_clicked().connect(
+        sigc::mem_fun(*this, &GtkPassWindow::on_check)
+    );
+    m_optionAvoidSimilar->signal_clicked().connect(
         sigc::mem_fun(*this, &GtkPassWindow::on_check)
     );
 
@@ -208,6 +219,7 @@ void GtkPassWindow::on_check() {
     m_options.bIncludeSpace = m_optionIncludeSpace->get_active();
     m_options.bIncludeDash = m_optionIncludeDash->get_active();
     m_options.bIncludeSpecial = m_optionIncludeSpecial->get_active();
+    m_options.bAvoidSimilarChars = m_optionAvoidSimilar->get_active();
 
     // enable/disable button
     if (m_options.bIncludeLettersLower || m_options.bIncludeLettersUpper ||
@@ -262,6 +274,10 @@ void GtkPassWindow::updateEntropy() {
         entropy += m_alphaLength[4];
     if (m_options.bIncludeSpecial)
         entropy += m_alphaLength[5];
+
+    // subtract similar chars
+    if (m_options.bAvoidSimilarChars)
+        entropy -= m_alphaLength[6];
 
     // set character count in ui
     m_characterCount->set_text(std::to_string(static_cast<int>(entropy)));

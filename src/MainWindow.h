@@ -62,6 +62,9 @@ private:
     /// Label displaying the number of chars in input set
     Gtk::Label* m_characterCount;
 
+    /// Pointer to check button for avoiding similar chars
+    Gtk::CheckButton* m_optionAvoidSimilar;
+
     /// Pointer to the spin button controlling the length of the password
     Gtk::SpinButton* m_passwordLength;
     /// \p Glib::RefPtr to the \p Gtk::Adjustment of the password length spin

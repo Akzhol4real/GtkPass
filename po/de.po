@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtkpass 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Darth-Revan/GtkPass/issues\n"
-"POT-Creation-Date: 2017-02-19 21:26+0100\n"
-"PO-Revision-Date: 2017-02-19 21:32+0100\n"
+"POT-Creation-Date: 2017-02-22 11:57+0100\n"
+"PO-Revision-Date: 2017-02-22 11:59+0100\n"
 "Last-Translator: Darth-Revan <S1610304005@students.fh-hagenberg.at>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -49,7 +49,8 @@ msgstr "Sonderzeichen"
 
 #: data/window.ui:99
 msgid "Check to include special characters (except Dash and Space)."
-msgstr "Ankreuzen, um Sonderzeichen (außer Bindestrich und Leerzeichen) zu verwenden"
+msgstr ""
+"Ankreuzen, um Sonderzeichen (außer Bindestrich und Leerzeichen) zu verwenden"
 
 #: data/window.ui:110
 msgid "Space character ( )"
@@ -79,43 +80,59 @@ msgstr "0"
 msgid "Input alphabet"
 msgstr "Eingabealphabet"
 
-#: data/window.ui:209
+#: data/window.ui:208
+msgid "Avoid similar characters"
+msgstr "Ähnliche Zeichen vermeiden"
+
+#: data/window.ui:214
+msgid ""
+"Check to avoid visually similar characters in the password, for example "
+"\"1\" (one) and \"l\" (the lower case \"L\")."
+msgstr ""
+"Ankreuzen, um ähnliche Zeichen im Passwort zu vermeiden, z.B. \"1\" (eins) "
+"und \"l\" (das kleine L)."
+
+#: data/window.ui:240
+msgid "Options"
+msgstr "Optionen"
+
+#: data/window.ui:271
 msgid "The number of characters in the password."
 msgstr "Anzahl der Zeichen im Passwort"
 
-#: data/window.ui:220
+#: data/window.ui:282
 msgid "Password Length:"
 msgstr "Passwortlänge:"
 
-#: data/window.ui:252
+#: data/window.ui:314
 msgid "The password's entropy in Bits."
 msgstr "Die Entropie des Passworts in Bit:"
 
-#: data/window.ui:263
+#: data/window.ui:325
 msgid "Password Entropy in Bits:"
 msgstr "Passwortentropie:"
 
-#: data/window.ui:280
+#: data/window.ui:342
 msgid "0 Bits"
 msgstr "0 Bits"
 
-#: data/window.ui:325
+#: data/window.ui:387
 msgid "Length and Entropy"
 msgstr "Länge und Entropie"
 
-#: data/window.ui:374
+#: data/window.ui:436
 msgid "Show the password."
 msgstr "Zeige das Passwort"
 
-#: data/window.ui:388
+#: data/window.ui:450
 msgid "Generate"
 msgstr "Generieren"
 
-#: data/window.ui:392
+#: data/window.ui:454
 msgid "Generate the passsword."
 msgstr "Generiert ein Passwort."
 
-#: data/window.ui:410
+#: data/window.ui:472
 msgid "Generate Password"
 msgstr "Passwort generieren"
 

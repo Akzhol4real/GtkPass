@@ -94,3 +94,23 @@ TEST_CASE("getRandomString", "[RandomGenerator]") {
         }
     }
 }
+
+/// Test case for the function \p removeFromString
+TEST_CASE("removeFromString", "[RandomGenerator]") {
+    std::string str = "Test";
+    std::string toRem = "es";
+
+    removeFromString(str, toRem);
+    REQUIRE(str.length() == 2);
+    REQUIRE(str.compare("Tt") == 0);
+
+    str = "Hello World";
+    toRem = "l";
+    removeFromString(str, toRem);
+    REQUIRE(str.compare("Heo Word") == 0);
+
+    str = "This is a test";
+    toRem = "tt";
+    removeFromString(str, toRem);
+    REQUIRE(str.compare("This is a es") == 0);
+}

@@ -28,6 +28,7 @@
 
 #include "RandomGenerator.h"
 #include <sstream>
+#include <algorithm>
 
 /**
  * Generates a random unsigned integer with sodium and returns it as
@@ -75,8 +76,13 @@ std::string getRandomString(const unsigned int length, const genopts& options){
     if (options.bIncludeSpecial)
         alphabet << ALPHA_SPECIAL;
 
-    // get the alphabet string and return "" if it contains nothing
-    const std::string alpha = alphabet.str();
+    // get the alphabet string
+    std::string alpha = alphabet.str();
+
+    // remove characters from alphabet when avoiding similar
+    if (options.bAvoidSimilarChars)
+        removeFromString(alpha, ALPHA_SIMILAR);
+
     if (alpha.length() <= 0)
         return "";
 
@@ -88,4 +94,17 @@ std::string getRandomString(const unsigned int length, const genopts& options){
     }
 
     return randomString.str();
+}
+
+/**
+ * Takes a reference to a string and removes all characters in \p toRemove in
+ * it. The result will directly be written to the variable.
+ *
+ * \param str The string to remove chars from
+ * \param toRemove String consisting of the characters to remove
+ */
+void removeFromString(std::string& str, const std::string& toRemove) {
+    for (size_t i = 0; i < toRemove.length(); i++) {
+        str.erase(remove(str.begin(), str.end(), toRemove[i]), str.end());
+    }
 }

@@ -44,6 +44,8 @@
 #define ALPHA_DASH "-"
 /// Defines ASCII special characters (without dash and space)
 #define ALPHA_SPECIAL "!\"#$%&'()*+,./<=>?@:;\\[]^`{}|~"
+/// Defines all characters to optionally avoid because of similarity
+#define ALPHA_SIMILAR "0O1l|I"
 
 /**
  * \typedef genopts
@@ -59,7 +61,7 @@ typedef struct options {
     /// \li \p bIncludeSpecial = false
     options() : bIncludeLettersLower(true), bIncludeLettersUpper(true),
         bIncludeNumbers(true), bIncludeSpace(false), bIncludeDash(false),
-        bIncludeSpecial(false) {}
+        bIncludeSpecial(false), bAvoidSimilarChars(false) {}
     /// include lower case characters
     bool bIncludeLettersLower;
     /// include upper case letters
@@ -72,6 +74,8 @@ typedef struct options {
     bool bIncludeDash;
     /// include special characters
     bool bIncludeSpecial;
+    /// avoid visually similar characters
+    bool bAvoidSimilarChars;
 } genopts;
 
 /**
@@ -96,5 +100,14 @@ uint32_t getRandomNumber(uint32_t upperBound = 0);
  * \return Random string
  */
 std::string getRandomString(const unsigned int length, const genopts& options);
+
+/**
+ * Takes a reference to a string and removes all characters in \p toRemove in
+ * it. The result will directly be written to the variable.
+ *
+ * \param str The string to remove chars from
+ * \param toRemove String consisting of the characters to remove
+ */
+void removeFromString(std::string& str, const std::string& toRemove);
 
 #endif
